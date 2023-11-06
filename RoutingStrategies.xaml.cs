@@ -51,13 +51,21 @@ public partial class RoutingStrategies : ContentPage, INotifyPropertyChanged
     {
         // Perform an action after examining e.Value
     }
+    /// <summary>
+    /// displays selected view on map 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     void DisplayRoute_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         //string previous = (e.PreviousSelection.FirstOrDefault() as Monkey)?.Name;
         //string current = (e.CurrentSelection.FirstOrDefault() as Monkey)?.Name;
     }
     public new event PropertyChangedEventHandler PropertyChanged;
-
+    /// <summary>
+    /// handles propery change
+    /// </summary>
+    /// <param name="propertyName"></param>
     protected new virtual void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
