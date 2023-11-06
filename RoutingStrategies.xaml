@@ -8,7 +8,7 @@
             <Label Grid.Row="0" Grid.Column="0" Text="Starting Airport: " 
                    VerticalOptions="Center" />
             <Entry Grid.Row="0" Grid.Column="1" Placeholder="KATW" 
-                   VerticalOptions="Center">
+                   VerticalOptions="Center" Completed="MaxDist_OnEntryCompleted" >
             </Entry>
             <Label Grid.Row="1" Grid.Column="0" Text="Max Distance: "
                    VerticalOptions="Center" />
@@ -32,7 +32,7 @@
         </Grid>
     
     
-        <!--will be replaced with collection view that is bound to Routes-->
+        <!--will be replaced with collection view that is bound to RoutingStrategies.Routes-->
         <ContentView Margin="0,-15,0,0" Padding="20, 10" BackgroundColor="AliceBlue" HeightRequest="200">
             <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*">
                 <Label Grid.Row="0" Grid.Column="0" Text="KATW"/>
