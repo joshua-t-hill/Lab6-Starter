@@ -1,9 +1,10 @@
 ﻿using Lab6_Starter.Model;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Lab6_Starter;
 
-public partial class RoutingStrategies : ContentPage
+public partial class RoutingStrategies : ContentPage, INotifyPropertyChanged
 {
     ObservableCollection<ObservableCollection<Airport>> routes;
     int maxDist = 60;
@@ -46,6 +47,12 @@ public partial class RoutingStrategies : ContentPage
     void Visited_OnToggled(object sender, ToggledEventArgs e)
     {
         // Perform an action after examining e.Value
+    }
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
 }
