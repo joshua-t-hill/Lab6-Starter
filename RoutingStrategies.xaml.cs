@@ -10,13 +10,16 @@ public partial class RoutingStrategies : ContentPage, INotifyPropertyChanged
     int maxDist = 60;
     bool visited = true;
     Airport startingAirport = new Airport();
+    ObservableCollection<Airport> wisconsinAirports = MauiProgram.BusinessLogic.GetAllWisconsinAirports();
     public ObservableCollection<ObservableCollection<Airport>> Routes { 
-        get { return routes; } 
+        get { return routes; } set { 
+            routes = value;
+            OnPropertyChanged(nameof(Routes));
+        }
     }
     public RoutingStrategies()
     {
         InitializeComponent();
-        //BindingContext = MauiProgram.BusinessLogic;
     }
 
     /// <summary>
@@ -48,9 +51,14 @@ public partial class RoutingStrategies : ContentPage, INotifyPropertyChanged
     {
         // Perform an action after examining e.Value
     }
-    public event PropertyChangedEventHandler PropertyChanged;
+    void DisplayRoute_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        //string previous = (e.PreviousSelection.FirstOrDefault() as Monkey)?.Name;
+        //string current = (e.CurrentSelection.FirstOrDefault() as Monkey)?.Name;
+    }
+    public new event PropertyChangedEventHandler PropertyChanged;
 
-    protected virtual void OnPropertyChanged(string propertyName)
+    protected new virtual void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
