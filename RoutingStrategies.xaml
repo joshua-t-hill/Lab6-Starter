@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lab6_Starter.RoutingStrategies"
              Title="RoutingStrategies">
-
     <VerticalStackLayout Spacing="20" Padding= "30,30,30,10" VerticalOptions="Start">
         <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*,0.2*">
             <Label Grid.Row="0" Grid.Column="0" Text="Starting Airport: " 
@@ -31,6 +30,9 @@
             <Label Grid.Row="0" Grid.Column="2" Text="Dist" 
                    HorizontalOptions="End"/>
         </Grid>
+    
+    
+        <!--will be replaced with collection view that is bound to Routes-->
         <ContentView Margin="0,-15,0,0" Padding="20, 10" BackgroundColor="AliceBlue" HeightRequest="200">
             <Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*">
                 <Label Grid.Row="0" Grid.Column="0" Text="KATW"/>
