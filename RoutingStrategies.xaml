@@ -20,7 +20,7 @@
             <Label Grid.Row="2" Grid.Column="0" Text="Visited:" 
                    VerticalOptions="Center" />
             <Switch Grid.Row = "2" Grid.Column="1" IsToggled="true" 
-                    HorizontalOptions="Start"/>
+                    HorizontalOptions="Start" Toggled="Visited_OnToggled" />
         </Grid>
         <Label Text="Suggested Routes" FontSize="Large"></Label>
         <Grid Padding="20,0" RowDefinitions="*" ColumnDefinitions="*,*,*">

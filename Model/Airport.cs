@@ -11,6 +11,13 @@ public class Airport : INotifyPropertyChanged
     DateTime dateVisited;
     int rating;
 
+    //changes from group 5
+    double longitude;
+    double latitude; 
+    public double Latitude { get { return latitude; } set { latitude = value; } }
+    public double Longitude { get { return longitude; } set { longitude = value; } }
+    
+
     public String Id
     {
         get { return id; }
