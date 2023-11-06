@@ -10,5 +10,9 @@ namespace Lab6_Starter.Model
         AirportAdditionError InsertAirport(Airport airport);
         AirportDeletionError DeleteAirport(Airport airport);
         AirportEditError UpdateAirport(Airport replacementAirport);
+
+        //***changes from group 5***
+        ObservableCollection<Airport> GetAllWisconsinAirports();
+        //***changes from group 5***
     }
 }

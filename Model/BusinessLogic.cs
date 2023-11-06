@@ -153,6 +153,17 @@ public class BusinessLogic : IBusinessLogic
         return db.SelectAllAirports();
     }
 
+    //***changes from group 5***
+    /// <summary>
+    /// UI layer calls BL layer; BL layer calls DB layer.
+    /// </summary>
+    /// <returns> An ObservableCollection of Airports in Wisconsin </returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public ObservableCollection<Airport> GetAllWisconsinAirports()
+    {
+        throw new NotImplementedException();
+    }
+    //***changes from group 5***
 
 }
 

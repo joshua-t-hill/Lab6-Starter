@@ -174,6 +174,17 @@ public class Database : IDatabase
         return config["CockroachDBPassword"] ?? ""; // if it can't find the password, returns ... the password (this works in VS, not VSC) 
     }
 
-
+    //***changes from group 5***
+    /// <summary>
+    /// Calls the SQL database to get a list of only Airports inside Wisconsin. 
+    /// The app currently seems to be focused on Wisconsin, but that may not always be the case.
+    /// </summary>
+    /// <returns> An ObservableCollection of Airports in Wisconsin </returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public ObservableCollection<Airport> GetAllWisconsinAirports()
+    {
+        throw new NotImplementedException();
+    }
+    //***changes from group 5***
 }
 

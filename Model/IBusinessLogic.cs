@@ -10,4 +10,8 @@ public interface IBusinessLogic
     Airport FindAirport(String id);
     String CalculateStatistics();
     ObservableCollection<Airport> GetAirports();
+
+    //***changes from group 5***
+    ObservableCollection<Airport> GetAllWisconsinAirports();
+    //***changes from group 5***
 }
