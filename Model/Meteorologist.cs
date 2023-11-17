@@ -8,6 +8,8 @@ public class Meteorologist
     private string metarReport; //unchanged from provided API
     private string tafReport;   //unchanged from provided API
 
+    private string keyAPI = "53b1c7659260454e889e86c373"; //our api key for accessing https://www.checkwxapi.com
+
     public string MetarReport { get; set; } //unchanged from provided API
     public string TafReport { get; set; }   //unchanged from provided API
 
