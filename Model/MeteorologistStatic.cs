@@ -16,7 +16,7 @@ public static class MeteorologistStatic
     /// </summary>
     public static string GetMetar(string airportId)
     {
-        string metarClientString = "https://api.checkwx.com/metar/" + airportId + "/nearest";
+        string metarClientString = "https://api.checkwx.com/metar/" + airportId;
         RestClient client = new(string.Format(metarClientString, airportId));
         RestRequest request = new()
         {
@@ -57,7 +57,7 @@ public static class MeteorologistStatic
     /// </summary>
     public static string GetTaf(string airportId)
     {
-        string tafClientString = "https://api.checkwx.com/taf/" + airportId + "/nearest";
+        string tafClientString = "https://api.checkwx.com/taf/" + airportId;
         RestClient client = new(string.Format(tafClientString, airportId));
         RestRequest request = new()
         {
