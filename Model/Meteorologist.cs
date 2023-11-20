@@ -1,49 +1,23 @@
-﻿using RestSharp;
+﻿using Lab6_Starter;
+using RestSharp;
+using System.Text.Json;
 
 namespace Lab2_Solution.Model;
 /// <summary>
 /// Implementation of API for Lab7P2 (Lab8) done by Group 5.
 /// BusinessLogic layer file for Weather page.
 /// </summary>
-public class Meteorologist
+public static class Meteorologist
 {
-    private string metarReport;
-    private string tafReport;
-    private readonly string keyAPI = "53b1c7659260454e889e86c373"; //our api key for accessing https://www.checkwxapi.com
-    private string airportId; //use the ID to fetch weather information on that specific airport; must be ICAO code
-
-    //adding '/decoded' to the end will allow for passing a JSON input file that can be mapped to the output information
-    private readonly string metarClientString = "https://api.checkwx.com/metar/{0}/nearest/decoded";
-    private readonly string tafClientString = "https://api.checkwx.com/taf/{0}/nearest/decoded";
-
-    public string MetarReport { get{ return metarReport; } }
-    public string TafReport { get{ return tafReport; } }
+    private static readonly string keyAPI = "53b1c7659260454e889e86c373"; //our api key for accessing https://www.checkwxapi.com
 
     /// <summary>
-    /// 
+    /// gets Metar and formats it for the weatherPage
     /// </summary>
-    public Meteorologist(string airportId)
+    public static string GetMetar(string airportId)
     {
-        this.airportId = airportId;
-
-        GetReports();
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public void GetReports()
-    {
-        GetMetar();
-        GetTaf();
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void GetMetar()
-    {
-        RestClient client = new(string.Format(metarClientString, airportId));
+        string metarClientString = "https://api.checkwx.com/metar/" + airportId;
+        RestClient client = new(metarClientString);
         RestRequest request = new()
         {
             Method = Method.Get
@@ -51,16 +25,39 @@ public class Meteorologist
 
         request.AddHeader("X-API-Key", keyAPI);
         RestResponse response = client.Execute(request);
+        string jsonResponse = response.Content;
+        try
+        {
+            using (JsonDocument document = JsonDocument.Parse(jsonResponse))
+            {
+                JsonElement root = document.RootElement;
 
-        metarReport = response.Content;
+                // Check if the structure is as expected
+                if (root.TryGetProperty("data", out JsonElement dataElement) && dataElement.GetArrayLength() > 0)
+                {
+                    // Get the first item in the 'data' array
+                    JsonElement firstDataElement = dataElement.EnumerateArray().First();
+
+                    // Extract the string value
+                    return firstDataElement.GetString();
+                }
+            }
+
+            return "Unexpected JSON structure";
+        }
+        catch (JsonException ex)
+        {
+            return $"Error parsing JSON: {ex.Message}";
+        }
     }
 
     /// <summary>
-    /// 
+    /// gets taf and formats it for the weatherPage
     /// </summary>
-    private void GetTaf()
+    public static string GetTaf(string airportId)
     {
-        RestClient client = new(string.Format(tafClientString, airportId));
+        string tafClientString = "https://api.checkwx.com/taf/" + airportId;
+        RestClient client = new(tafClientString);
         RestRequest request = new()
         {
             Method = Method.Get
@@ -68,7 +65,29 @@ public class Meteorologist
 
         request.AddHeader("X-API-Key", keyAPI);
         RestResponse response = client.Execute(request);
+        string jsonResponse = response.Content;
+        try
+        {
+            using (JsonDocument document = JsonDocument.Parse(jsonResponse))
+            {
+                JsonElement root = document.RootElement;
 
-        tafReport = response.Content;
+                // Check if the structure is as expected
+                if (root.TryGetProperty("data", out JsonElement dataElement) && dataElement.GetArrayLength() > 0)
+                {
+                    // Get the first item in the 'data' array
+                    JsonElement firstDataElement = dataElement.EnumerateArray().First();
+
+                    // Extract the string value
+                    return firstDataElement.GetString();
+                }
+            }
+
+            return "Unexpected JSON structure";
+        }
+        catch (JsonException ex)
+        {
+            return $"Error parsing JSON: {ex.Message}";
+        }
     }
 }

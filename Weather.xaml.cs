@@ -12,11 +12,9 @@ public partial class Weather : ContentPage
 
     public void OnSearch_Clicked (object sender, EventArgs e)
     {
-        MetarLabel.Text = MeteorologistStatic.GetMetar(entry.Text);
-        TafLabel.Text = MeteorologistStatic.GetTaf(entry.Text);
-
+        MetarLabel.Text = Meteorologist.GetMetar(entry.Text);
+        TafLabel.Text = Meteorologist.GetTaf(entry.Text);
     }
-
 
 }
 
