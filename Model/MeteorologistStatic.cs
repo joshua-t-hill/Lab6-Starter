@@ -1,6 +1,6 @@
-﻿using RestSharp;
+﻿using Lab6_Starter;
+using RestSharp;
 using System.Text.Json;
-using System.Text.Json.Nodes;
 
 namespace Lab2_Solution.Model;
 /// <summary>
@@ -43,13 +43,11 @@ public static class MeteorologistStatic
                 }
             }
 
-            Console.WriteLine("Unexpected JSON structure");
-            return null;
+            return "Unexpected JSON structure";
         }
         catch (JsonException ex)
         {
-            Console.WriteLine($"Error parsing JSON: {ex.Message}");
-            return null;
+            return $"Error parsing JSON: {ex.Message}";
         }
     }
     /// <summary>
@@ -84,13 +82,11 @@ public static class MeteorologistStatic
                 }
             }
 
-            Console.WriteLine("Unexpected JSON structure");
-            return null;
+            return "Unexpected JSON structure";
         }
         catch (JsonException ex)
         {
-            Console.WriteLine($"Error parsing JSON: {ex.Message}");
-            return null;
+            return $"Error parsing JSON: {ex.Message}";
         }
     }
 }
